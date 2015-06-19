@@ -9,10 +9,10 @@ public class StyCamera : MonoBehaviour
 	private float _rotDefaultX = 0f;
 	private float _rotDefaultY = 0f;
 	private float _rotDefaultZ = 0f;
-
 	private float _inputDefaultX = 0f;
 	private float _inputDefaultY = 0f;
 	private float _inputDefaultZ = 0f;
+	private Quaternion _targetRot = Quaternion.identity;
 
 	// Use this for initialization
 	void Start ()
@@ -33,8 +33,11 @@ public class StyCamera : MonoBehaviour
 		float tiltAroundY = -(Input.acceleration.x - _inputDefaultX) * tiltAngle;//Input.GetAxis("Horizontal") * tiltAngle;
 		float tiltAroundX = (Input.acceleration.y - _inputDefaultY) * tiltAngle;//Input.GetAxis("Vertical") * tiltAngle;
 		Debug.Log("x: "+tiltAroundX+" y: "+tiltAroundY);
-		Quaternion target = Quaternion.Euler(tiltAroundX + _rotDefaultX, tiltAroundY + _rotDefaultY, _rotDefaultZ);
-		transform.rotation = Quaternion.Slerp(transform.rotation, target, Time.deltaTime * smooth);
+		_targetRot = Quaternion.Euler(tiltAroundX + _rotDefaultX, tiltAroundY + _rotDefaultY, _rotDefaultZ);
+	}
+
+	void LateUpdate(){
+		transform.rotation = Quaternion.Slerp(transform.rotation, _targetRot, Time.deltaTime * smooth);
 	}
 
 	void ResetTilt(){
