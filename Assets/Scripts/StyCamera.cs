@@ -4,7 +4,7 @@ using System.Collections;
 public class StyCamera : MonoBehaviour
 {
 	public float smooth = 2.0f;
-	public float tiltAngle = 20.0f;
+	public float tiltAngle = 10.0f;
 
 	private float _rotDefaultX = 0f;
 	private float _rotDefaultY = 0f;
@@ -21,18 +21,17 @@ public class StyCamera : MonoBehaviour
 		_rotDefaultY = transform.eulerAngles.y;
 		_rotDefaultZ = transform.eulerAngles.z;
 
+		//ResetTilt ();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Input.touchCount > 0) {
-			ResetTilt();
-		}
-
-		float tiltAroundY = -(Input.acceleration.x - _inputDefaultX) * tiltAngle;//Input.GetAxis("Horizontal") * tiltAngle;
-		float tiltAroundX = (Input.acceleration.y - _inputDefaultY) * tiltAngle;//Input.GetAxis("Vertical") * tiltAngle;
-		Debug.Log("x: "+tiltAroundX+" y: "+tiltAroundY);
+		float accX = Input.acceleration.x;
+		float accY = Input.acceleration.y;
+		Debug.Log (Screen.orientation+"x: "+accX + "y: "+accY + "z: "+Input.acceleration.z);
+		float tiltAroundY = -(accX - _inputDefaultX) * tiltAngle;//Input.GetAxis("Horizontal") * tiltAngle;
+		float tiltAroundX = (accY - _inputDefaultY) * tiltAngle;//Input.GetAxis("Vertical") * tiltAngle;
 		_targetRot = Quaternion.Euler(tiltAroundX + _rotDefaultX, tiltAroundY + _rotDefaultY, _rotDefaultZ);
 	}
 

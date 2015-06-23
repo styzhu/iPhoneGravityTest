@@ -2,8 +2,8 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/StyCamera.cs">
     <Files>
-      <File FileName="Assets/Scripts/StyCamera.cs" Line="22" Column="21" />
-      <File FileName="Assets/Scripts/MoveCube.cs" Line="17" Column="28" />
+      <File FileName="Assets/Scripts/StyCamera.cs" Line="11" Column="34" />
+      <File FileName="Assets/Scripts/MoveCube.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
